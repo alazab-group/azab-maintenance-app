@@ -15,6 +15,11 @@
 ## هيكل المشروع
 
 
+<div style="background-color: black; color: white; padding: 20px;">
+  <h1>مرحبا بك في المشروع!</h1>
+  <p>هذا هو ملف README بأسلوب خلفية سوداء ونص أبيض.</p>
+</div>
+
 // 🔧 React Native + Supabase — Maintenance App Architecture (Final Blueprint + Enhancements)
 
 // ✅ الهيكل الكامل للمجلدات والملفات داخل src/
@@ -46,7 +51,6 @@ src/
 │   │   ├── SessionGuard.js
 │   │   ├── Logout.js
 │   │   ├── Permissions.js      // تحديد الصلاحيات بناءً على الدور
-│
 │   ├── MaintenanceRequests/    // 🟦 طلبات الصيانة 🛠
 │   │   ├── NewRequest.js
 │   │   ├── MaintenanceRequests.js
@@ -58,7 +62,6 @@ src/
 │   │   ├── RequestFilter.js
 │   │   ├── RequestETA.js
 │   │   ├── LiveStatus.js
-│
 │   ├── FinanceDashboard/       // 🟦 داشبورد مالية 📊
 │   │   ├── InvoicesSummary.js
 │   │   ├── InvoicesTable.js
@@ -66,7 +69,6 @@ src/
 │   │   ├── BranchCostAnalysis.js
 │   │   ├── FinancialReport.js
 │   │   ├── MonthlyBreakdown.js
-│
 │   ├── OperationsDashboard/    // 🟦 داشبورد تشغيلية ⚙️
 │   │   ├── ActiveRequests.js
 │   │   ├── TechnicianPerformance.js
@@ -77,7 +79,6 @@ src/
 │   │   ├── OperationStats.js
 │   │   ├── TechnicianAlert.js
 │   │   ├── BranchMap.js
-│
 │   ├── Gallery/                // 🟦 معرض الصور 🖼
 │   │   ├── GalleryOverview.js
 │   │   ├── ImageViewer.js
@@ -86,7 +87,6 @@ src/
 │   │   ├── DownloadImage.js
 │   │   ├── GallerySearch.js
 │   │   ├── ShareImage.js
-│
 │   ├── Archive/                // 🟦 الأرشيف 🗂
 │   │   ├── ArchivedRequests.js
 │   │   ├── SearchFilters.js
@@ -95,7 +95,6 @@ src/
 │   │   ├── ArchivedFilesViewer.js
 │   │   ├── ArchiveYearTabs.js
 │   │   ├── ArchiveReadonlyGuard.js
-│
 │   ├── General/                // 🟦 صفحات عامة 🌐
 │   │   ├── Profile.js
 │   │   ├── ContactUs.js
@@ -103,25 +102,21 @@ src/
 │   │   ├── Notifications.js
 │   │   ├── LanguageToggle.js
 │   │   ├── AppearanceSettings.js
-│
 │   ├── Admin/                  // 🟦 أدوات المدير (إشراف ومراقبة)
 │   │   ├── LogsDashboard.js
 │   │   ├── ErrorMonitor.js
-│
 │   ├── Analytics/              // 🆕 قسم التحليلات والرؤى 🧠
 │   │   ├── InsightDashboard.js     // واجهة تعرض أهم المؤشرات
 │   │   ├── UsageTrends.js          // استخدام التطبيق عبر الزمن
 │   │   ├── BranchPerformance.js    // أداء الفروع
 │   │   ├── TechnicianInsights.js   // أداء الفنيين وتحليل الإنتاجية
 │   │   ├── ServiceDemand.js        // الطلب حسب نوع الخدمة
-│
 │   ├── CustomerExperience/     // 🆕 تجربة العميل 💬
 │   │   ├── CustomerRatings.js      // تقييمات العملاء
 │   │   ├── FeedbackForm.js         // نموذج رأي بعد الخدمة
 │   │   ├── SatisfactionStats.js    // تحليل الرضا العام
 │   │   ├── AutoFollowUps.js        // متابعة تلقائية بعد التنفيذ
 │   │   ├── ServiceHistory.js       // تاريخ الطلبات للعميل
-│
 ├── services/                  // 🔁 خدمات التواصل مع قاعدة البيانات
 │   ├── requestService.js
 │   ├── workflowService.js
@@ -131,7 +126,6 @@ src/
 │   ├── notificationService.js
 │   ├── galleryService.js
 │   ├── authService.js
-│
 ├── utils/                    // 🧩 أدوات عامة لتحسين الأداء
 │   ├── formatDate.js
 │   ├── toast.js
@@ -140,11 +134,11 @@ src/
 │   ├── supabaseErrorMapper.js
 │   ├── mapPriorityColor.js
 │   ├── durationCalculator.js
-│
 ├── i18n/                     // 🌍 دعم تعدد اللغات 
 │   ├── ar.json
 │   ├── en.json
 │   ├── i18n.js
+
 
 // ✅ بهذا الشكل: المشروع أصبح معماري احترافي، مؤمن، ذكي، قابل للتوسع العملاق فورًا 🚀
 
