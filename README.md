@@ -15,7 +15,139 @@
 ## هيكل المشروع
 
 
-src/ ├── components/ │ ├── Dashboard/ │ │ ├── DashboardGroup.js │ │ ├── DashboardSidebar.js │ │ ├── DashboardPanel.js │ │ ├── DashboardNavbar.js │ │ └── DashboardToolbar.js │ ├── Forms/ │ │ ├── MaintenanceRequestForm.js │ │ ├── LoginForm.js │ │ └── ConfirmForm.js │ ├── Tables/ │ │ ├── RequestsTable.js │ │ ├── StoresTable.js │ │ └── RatingsTable.js │ ├── Modals/ │ │ ├── RequestDetailsModal.js │ │ └── StoreDetailsModal.js │ └── Notifications/ │ ├── NotificationList.js │ └── NotificationItem.js ├── pages/ │ ├── Dashboard/ │ │ └── Dashboard.js │ ├── MaintenanceRequests/ │ │ ├── MaintenanceRequests.js │ │ ├── RequestDetails.js │ │ └── NewRequest.js │ ├── Stores/ │ │ ├── Stores.js │ │ └── StoreDetails.js │ ├── Auth/ │ │ ├── Login.js │ │ └── Confirm.js │ ├── Profile/ │ │ └── Profile.js │ └── Ratings/ │ └── Ratings.js ├── services/ │ ├── supabaseClient.js │ ├── authService.js │ ├── requestService.js │ ├── storeService.js │ └── notificationService.js ├── context/ │ ├── AuthContext.js │ ├── RequestContext.js │ ├── StoreContext.js │ └── NotificationContext.js ├── hooks/ │ ├── useAuth.js │ ├── useRequests.js │ ├── useStores.js │ └── useNotifications.js └── utils/ ├── formatDate.js └── validateForm.js
+// 🔧 React Native + Supabase — Maintenance App Architecture (Final Blueprint + Enhancements)
+
+// ✅ الهيكل الكامل للمجلدات والملفات داخل src/
+
+src/
+├── assets/                      // الصور، الشعارات، الأيقونات
+├── components/                 // مكونات واجهة قابلة لإعادة الاستخدام (مثل Card، Modal، Toast)
+├── context/                    // إدارة الجلسة والسياق العام للتطبيق (مثل AuthContext)
+├── hooks/                      // هوكات مخصصة مثل useAuth، useRole
+├── navigation/                 // إدارة التنقل بين الصفحات
+│   ├── TabsNavigator.js        // تبويبات Bottom Navigation حسب الدور
+│   ├── Drawer.js              // Drawer Navigation للمديرين فقط
+├── guards/                     // حراسة الدخول حسب الدور
+│   ├── withAdminGuard.js       // حراسة صفحات المدير
+│   ├── withTechnicianGuard.js  // حراسة الفني
+│   ├── withCustomerGuard.js    // حراسة العميل
+├── config/                     // إعدادات وتكوينات عامة
+│   ├── appConfig.js            // اسم التطبيق، اللوجو، معلومات عامة
+│   ├── constants.js            // تعريفات عامة (status, priority, serviceType)
+│   ├── roles.js                // تعريف الأدوار داخل النظام
+├── pages/
+│   ├── Auth/                   // 🟦 قسم المصادقة 🔐
+│   │   ├── Login.js
+│   │   ├── Confirm.js
+│   │   ├── AuthContext.js
+│   │   ├── useAuth.js
+│   │   ├── authService.js
+│   │   ├── ResendOtp.js
+│   │   ├── SessionGuard.js
+│   │   ├── Logout.js
+│   │   ├── Permissions.js      // تحديد الصلاحيات بناءً على الدور
+│
+│   ├── MaintenanceRequests/    // 🟦 طلبات الصيانة 🛠
+│   │   ├── NewRequest.js
+│   │   ├── MaintenanceRequests.js
+│   │   ├── RequestDetails.js
+│   │   ├── RequestReport.js
+│   │   ├── DeliveryConfirmation.js
+│   │   ├── Attachments.js
+│   │   ├── VoiceNoteUpload.js
+│   │   ├── RequestFilter.js
+│   │   ├── RequestETA.js
+│   │   ├── LiveStatus.js
+│
+│   ├── FinanceDashboard/       // 🟦 داشبورد مالية 📊
+│   │   ├── InvoicesSummary.js
+│   │   ├── InvoicesTable.js
+│   │   ├── CostComparisonChart.js
+│   │   ├── BranchCostAnalysis.js
+│   │   ├── FinancialReport.js
+│   │   ├── MonthlyBreakdown.js
+│
+│   ├── OperationsDashboard/    // 🟦 داشبورد تشغيلية ⚙️
+│   │   ├── ActiveRequests.js
+│   │   ├── TechnicianPerformance.js
+│   │   ├── DailyTasks.js
+│   │   ├── LiveStatusOverview.js
+│   │   ├── StatusCards.js
+│   │   ├── TechnicianRanking.js
+│   │   ├── OperationStats.js
+│   │   ├── TechnicianAlert.js
+│   │   ├── BranchMap.js
+│
+│   ├── Gallery/                // 🟦 معرض الصور 🖼
+│   │   ├── GalleryOverview.js
+│   │   ├── ImageViewer.js
+│   │   ├── GalleryUpload.js
+│   │   ├── BeforeAfterView.js
+│   │   ├── DownloadImage.js
+│   │   ├── GallerySearch.js
+│   │   ├── ShareImage.js
+│
+│   ├── Archive/                // 🟦 الأرشيف 🗂
+│   │   ├── ArchivedRequests.js
+│   │   ├── SearchFilters.js
+│   │   ├── RestoreRequest.js
+│   │   ├── ArchivedDetails.js
+│   │   ├── ArchivedFilesViewer.js
+│   │   ├── ArchiveYearTabs.js
+│   │   ├── ArchiveReadonlyGuard.js
+│
+│   ├── General/                // 🟦 صفحات عامة 🌐
+│   │   ├── Profile.js
+│   │   ├── ContactUs.js
+│   │   ├── About.js
+│   │   ├── Notifications.js
+│   │   ├── LanguageToggle.js
+│   │   ├── AppearanceSettings.js
+│
+│   ├── Admin/                  // 🟦 أدوات المدير (إشراف ومراقبة)
+│   │   ├── LogsDashboard.js
+│   │   ├── ErrorMonitor.js
+│
+│   ├── Analytics/              // 🆕 قسم التحليلات والرؤى 🧠
+│   │   ├── InsightDashboard.js     // واجهة تعرض أهم المؤشرات
+│   │   ├── UsageTrends.js          // استخدام التطبيق عبر الزمن
+│   │   ├── BranchPerformance.js    // أداء الفروع
+│   │   ├── TechnicianInsights.js   // أداء الفنيين وتحليل الإنتاجية
+│   │   ├── ServiceDemand.js        // الطلب حسب نوع الخدمة
+│
+│   ├── CustomerExperience/     // 🆕 تجربة العميل 💬
+│   │   ├── CustomerRatings.js      // تقييمات العملاء
+│   │   ├── FeedbackForm.js         // نموذج رأي بعد الخدمة
+│   │   ├── SatisfactionStats.js    // تحليل الرضا العام
+│   │   ├── AutoFollowUps.js        // متابعة تلقائية بعد التنفيذ
+│   │   ├── ServiceHistory.js       // تاريخ الطلبات للعميل
+│
+├── services/                  // 🔁 خدمات التواصل مع قاعدة البيانات
+│   ├── requestService.js
+│   ├── workflowService.js
+│   ├── emailService.js
+│   ├── invoiceService.js
+│   ├── profileService.js
+│   ├── notificationService.js
+│   ├── galleryService.js
+│   ├── authService.js
+│
+├── utils/                    // 🧩 أدوات عامة لتحسين الأداء
+│   ├── formatDate.js
+│   ├── toast.js
+│   ├── errorHandler.js
+│   ├── validators.js
+│   ├── supabaseErrorMapper.js
+│   ├── mapPriorityColor.js
+│   ├── durationCalculator.js
+│
+├── i18n/                     // 🌍 دعم تعدد اللغات 
+│   ├── ar.json
+│   ├── en.json
+│   ├── i18n.js
+
+// ✅ بهذا الشكل: المشروع أصبح معماري احترافي، مؤمن، ذكي، قابل للتوسع العملاق فورًا 🚀
+
 
 
 ## التثبيت
